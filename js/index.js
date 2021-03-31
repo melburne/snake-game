@@ -18,6 +18,7 @@ let yVelocity = 0;
 function drawGame() {
   clearScreen();
   changeSnakePosition();
+  checkAppleCollision();
   drawApple();
   drawSnake();
   setTimeout(drawGame, 1000/speed);
@@ -31,6 +32,14 @@ function clearScreen() {
 function changeSnakePosition() {
   headX = headX + xVelocity;
   headY = headY + yVelocity;
+}
+
+function checkAppleCollision() {
+  if(appleX == headX && appleY == headY) {
+    let randomNumber = Math.floor(Math.random() * tileCount);
+    appleX = randomNumber;
+    appleY = randomNumber;
+  }
 }
 
 function drawApple() {
