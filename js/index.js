@@ -8,6 +8,9 @@ let tileSize = canvas.width/tileCount - 2;
 let headX = 10;
 let headY = 10;
 
+let appleX = 5;
+let appleY = 5
+
 let xVelocity = 0;
 let yVelocity = 0;
 
@@ -15,6 +18,7 @@ let yVelocity = 0;
 function drawGame() {
   clearScreen();
   changeSnakePosition();
+  drawApple();
   drawSnake();
   setTimeout(drawGame, 1000/speed);
 }
@@ -24,16 +28,21 @@ function clearScreen() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
+function changeSnakePosition() {
+  headX = headX + xVelocity;
+  headY = headY + yVelocity;
+}
+
+function drawApple() {
+  ctx.fillStyle = 'red';
+  ctx.fillRect(appleX*tileCount, appleY*tileCount, tileSize, tileSize);
+}
 
 function drawSnake() {
   ctx.fillStyle = 'orange';
   ctx.fillRect(headX*tileCount, headY*tileCount, tileSize, tileSize);
 }
 
-function changeSnakePosition() {
-  headX = headX + xVelocity;
-  headY = headY + yVelocity;
-}
 
 document.body.addEventListener('keydown', keyDown);
 
