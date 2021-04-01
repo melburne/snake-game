@@ -23,6 +23,7 @@ let appleY = 5
 let xVelocity = 0;
 let yVelocity = 0;
 
+let score = 0;
 
 function drawGame() {
   clearScreen();
@@ -30,6 +31,7 @@ function drawGame() {
   checkAppleCollision();
   drawApple();
   drawSnake();
+  drawScore();
   setTimeout(drawGame, 1000/speed);
 }
 
@@ -49,6 +51,7 @@ function checkAppleCollision() {
     appleX = randomNumber;
     appleY = randomNumber;
     tailLength++;
+    score++;
   }
 }
 
@@ -71,6 +74,12 @@ function drawSnake() {
 
   ctx.fillStyle = 'orange';
   ctx.fillRect(headX * tileCount, headY * tileCount, tileSize, tileSize);
+}
+
+function drawScore() {
+  ctx.fillStyle = 'white';
+  ctx.font = '12px Verdana';
+  ctx.fillText('Score ' + score, canvas.width - 60, 15);
 }
 
 
