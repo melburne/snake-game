@@ -1,12 +1,21 @@
 const canvas = document.getElementById('snake-game');
 const ctx = canvas.getContext('2d');
 
+class SnakePart {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
 let speed = 7;
 
 let tileCount = 20;
 let tileSize = canvas.width/tileCount - 2;
 let headX = 10;
 let headY = 10;
+const snakeParts = [];
+let tailLength = 2;
 
 let appleX = 5;
 let appleY = 5
@@ -39,17 +48,29 @@ function checkAppleCollision() {
     let randomNumber = Math.floor(Math.random() * tileCount);
     appleX = randomNumber;
     appleY = randomNumber;
+    tailLength++;
   }
 }
 
 function drawApple() {
   ctx.fillStyle = 'red';
-  ctx.fillRect(appleX*tileCount, appleY*tileCount, tileSize, tileSize);
+  ctx.fillRect(appleX * tileCount, appleY * tileCount, tileSize, tileSize);
 }
 
 function drawSnake() {
+  ctx.fillStyle = 'green';
+  for(let i=0; i<snakeParts.length; i++) {
+    let part = snakeParts[i];
+    ctx.fillRect(part.x * tileCount, part.y * tileCount, tileSize, tileSize);
+  }
+
+  snakeParts.push(new SnakePart(headX, headY));
+  if(snakeParts.length > tailLength) {
+    snakeParts.shift();
+  }
+
   ctx.fillStyle = 'orange';
-  ctx.fillRect(headX*tileCount, headY*tileCount, tileSize, tileSize);
+  ctx.fillRect(headX * tileCount, headY * tileCount, tileSize, tileSize);
 }
 
 
