@@ -26,8 +26,15 @@ let yVelocity = 0;
 let score = 0;
 
 function drawGame() {
-  clearScreen();
   changeSnakePosition();
+  if(isGameOver()) {
+    ctx.fillStyle = 'white';
+    ctx.font = '40px Verdana';
+    ctx.fillText('Game Over', canvas.width - 310, canvas.height / 2);
+    return;
+  }
+
+  clearScreen();
   checkAppleCollision();
   drawApple();
   drawSnake();
@@ -35,14 +42,31 @@ function drawGame() {
   setTimeout(drawGame, 1000/speed);
 }
 
-function clearScreen() {
-  ctx.fillStyle = 'black';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-}
-
 function changeSnakePosition() {
   headX = headX + xVelocity;
   headY = headY + yVelocity;
+}
+
+function isGameOver() {
+  let gameOver = false;
+
+  // check for walls
+  if (headX < 0) {
+    gameOver = true;
+  } else if (headX == tileCount) {
+    gameOver = true;
+  } else if (headY < 0) {
+    gameOver = true;
+  } else if (headY == tileCount) {
+    gameOver = true;
+  }
+
+  return gameOver;
+}
+
+function clearScreen() {
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 function checkAppleCollision() {
