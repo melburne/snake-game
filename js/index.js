@@ -41,6 +41,7 @@ function drawGame() {
   drawApple();
   drawSnake();
   drawScore();
+
   setTimeout(drawGame, 1000/speed);
 }
 
@@ -91,6 +92,11 @@ function checkAppleCollision() {
     gulpSound.play();
     tailLength++;
     score++;
+
+    if((score != 0) && (score%3 == 0)) {
+      // increase speed when score reaches a multiple of 3
+      speed++;
+    }
   }
 }
 
