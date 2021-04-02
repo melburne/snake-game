@@ -25,6 +25,8 @@ let yVelocity = 0;
 
 let score = 0;
 
+const gulpSound = new Audio('audio/gulp.mp3');
+
 function drawGame() {
   changeSnakePosition();
   if(isGameOver()) {
@@ -86,6 +88,7 @@ function checkAppleCollision() {
     let randomNumber = Math.floor(Math.random() * tileCount);
     appleX = randomNumber;
     appleY = randomNumber;
+    gulpSound.play();
     tailLength++;
     score++;
   }
