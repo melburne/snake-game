@@ -50,8 +50,12 @@ function changeSnakePosition() {
 function isGameOver() {
   let gameOver = false;
 
+  if(xVelocity == 0 && yVelocity == 0) {
+    return false;
+  }
+
   // check for walls
-  if (headX < 0) {
+  if(headX < 0) {
     gameOver = true;
   } else if (headX == tileCount) {
     gameOver = true;
@@ -59,6 +63,14 @@ function isGameOver() {
     gameOver = true;
   } else if (headY == tileCount) {
     gameOver = true;
+  }
+
+  for(let i=0; i<snakeParts.length; i++) {
+    let part = snakeParts[i];
+    if(part.x == headX && part.y == headY) {
+      gameOver = true;
+      break;
+    }
   }
 
   return gameOver;
