@@ -29,6 +29,7 @@ const gulpSound = new Audio('audio/gulp.mp3');
 
 function drawGame() {
   changeSnakePosition();
+
   if(isGameOver()) {
     ctx.fillStyle = 'white';
     ctx.font = '40px Verdana';
@@ -57,7 +58,7 @@ function isGameOver() {
     return false;
   }
 
-  // check for walls
+  // check collision with walls
   if(headX < 0) {
     gameOver = true;
   } else if (headX == tileCount) {
@@ -68,6 +69,7 @@ function isGameOver() {
     gameOver = true;
   }
 
+  // check collision with snake body
   for(let i=0; i<snakeParts.length; i++) {
     let part = snakeParts[i];
     if(part.x == headX && part.y == headY) {
