@@ -4,7 +4,7 @@ const ctx = canvas.getContext('2d');
 /**
  * Defines the body of the snake.
  */
-class SnakePart {
+class SnakeBody {
   constructor(x, y) {
     this.x = x;
     this.y = y;
@@ -149,7 +149,7 @@ function drawSnake() {
   }
 
   // push new snake part where the head currently is
-  snakeParts.push(new SnakePart(headX, headY));
+  snakeParts.push(new SnakeBody(headX, headY));
   if(snakeParts.length > tailLength) {
     // remove the first part of the body
     snakeParts.shift();
