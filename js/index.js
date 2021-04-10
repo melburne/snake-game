@@ -1,15 +1,7 @@
+import SnakeBody from "./SnakeBody.js";
+
 const canvas = document.getElementById('snake-game');
 const ctx = canvas.getContext('2d');
-
-/**
- * Defines the body of the snake.
- */
-class SnakeBody {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-}
 
 // determines the difficulty of the game
 let speed = 7;
